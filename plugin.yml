@@ -1,0 +1,7 @@
+name: C-Economy
+version: 1.0
+main: economy.chlwhdtn.Economy
+
+commands:
+    돈:
+    송금:
