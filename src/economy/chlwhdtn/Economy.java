@@ -37,6 +37,7 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 	
 	@Override
 	public void onDisable() {
+		Bukkit.getScheduler().cancelTasks(getInstance());
 		MoneyFileManager.saveConfig();
 	}
 	
@@ -52,6 +53,9 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 		case "C-Shop":
 			System.out.println("C-Shop 확인");
 			break;
+		case "C-Land":
+			System.out.println("C-Land 확인");
+			break;
 			default:
 				System.out.println("알 수 없는 호환 시도");
 				Bukkit.getPluginManager().disablePlugin(plugin);
@@ -64,6 +68,7 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 	
 	@Override
 	public boolean onCommand(CommandSender cs, Command command, String label, String[] args) {
+		MoneyFileManager.reloadConfig();
 		if(command.getName().equals("돈")) {
 			if(args.length == 1) {
 				String playername = args[0];
@@ -106,6 +111,7 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 				
 				if(cs.isOp()) {
 					MoneyManager.addMoney(playername, amount);
+					MoneyFileManager.saveConfig();
 					cs.sendMessage(ChatColor.GREEN + String.format("%,d￦", amount) + "을 " + playername + "님에게 송금했습니다.");
 					return true;
 				}
@@ -116,6 +122,7 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 				
 				MoneyManager.addMoney(cs.getName(), -amount);
 				MoneyManager.addMoney(playername, amount);
+				MoneyFileManager.saveConfig();
 				cs.sendMessage(ChatColor.GREEN + String.format("%,d￦", amount) + "을 " + playername + "님에게 송금했습니다.");
 				return true;
 
@@ -131,6 +138,7 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		if(!MoneyManager.hasAccount(event.getPlayer().getName())) {
 			MoneyManager.setMoney(event.getPlayer().getName(), 100000);
+			MoneyFileManager.saveConfig();
 		}
 	}
 }
