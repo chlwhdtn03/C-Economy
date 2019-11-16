@@ -56,6 +56,9 @@ public class Economy extends JavaPlugin implements CommandExecutor, Listener {
 		case "C-Land":
 			System.out.println("C-Land 확인");
 			break;
+		case "C-Mine":
+			System.out.println("C-Mine 확인");
+			break;
 			default:
 				System.out.println("알 수 없는 호환 시도");
 				Bukkit.getPluginManager().disablePlugin(plugin);
