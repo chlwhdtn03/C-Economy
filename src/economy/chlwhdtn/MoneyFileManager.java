@@ -2,11 +2,8 @@ package economy.chlwhdtn;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
 
 public class MoneyFileManager {
 

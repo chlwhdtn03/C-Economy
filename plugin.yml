@@ -4,4 +4,5 @@ main: economy.chlwhdtn.Economy
 
 commands:
     돈:
+    수표:
     송금:
